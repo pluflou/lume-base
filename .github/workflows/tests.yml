@@ -9,7 +9,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        python-version: ["3.11", "3.12", "3.13"]
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -26,6 +26,8 @@ jobs:
       - name: Install dependencies and package
         run: |
           uv sync --extra dev
+      - name: List Python package versions
+        run: uv pip list
       - name: Run tests
         run: |
           uv run pytest
